@@ -4,16 +4,12 @@ import '../styles/sizes.dart';
 import '../styles/styles.dart';
 
 /// Separator divider
-Widget defaultSeparatorWidth(Color? color) => Container(
+Widget defaultSeparator(Color? color) => Container(
   width: double.infinity,
   height: 1.0,
   color: color,
 );
-Widget defaultSeparatorHeight(Color? color) => Container(
-  height: double.infinity,
-  width: 1.0,
-  color: color,
-);
+
 Widget defContainer(context, widget,{Color? color})=> Padding(
   padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
   child: Container(
@@ -113,6 +109,7 @@ Widget formFeild({
   required bool isClikable,
   dynamic validate,
   Function(String)? onSubmit,
+  Function(String)? onChanged,
   Function()? onTap,
   TextEditingController? controller,
   TextInputType? type,
@@ -125,6 +122,7 @@ Widget formFeild({
         autofocus: true,
         style: black14bold(),
         enabled: isClikable,
+        onChanged: onChanged,
         controller: controller,
         validator: validate,onFieldSubmitted: onSubmit,
         keyboardType: type,
