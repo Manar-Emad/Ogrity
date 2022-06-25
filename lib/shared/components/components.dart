@@ -10,6 +10,14 @@ Widget defaultSeparator(Color? color) => Container(
   color: color,
 );
 
+///Divider
+Widget myDivider(context) {
+  return Divider(
+    color: secondColor.withOpacity(0.15),
+    thickness: 1,
+  );
+}
+
 Widget defContainer(context, widget,{Color? color})=> Padding(
   padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
   child: Container(
@@ -33,15 +41,6 @@ Widget defContainer(context, widget,{Color? color})=> Padding(
     ),
   ),
 );
-
-
-///Divider
-Widget myDivider(context) {
-  return Divider(
-    color: secondColor.withOpacity(0.15),
-    thickness: 1,
-  );
-}
 
 /// CircularProgressIndicator
 Widget buildCircularProgressIndicator() => const Center(
@@ -69,16 +68,16 @@ Widget defaultButton(BuildContext context, {
         ),
       ),
       child: MaterialButton(
-        child: Text(
-          text,
-          style: (TextStyle(
-              color: txtColor, fontWeight: FontWeight.bold, fontSize: 14)),
-        ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
         ),
         padding: const EdgeInsets.all(5),
         onPressed: function,
+        child: Text(
+          text,
+          style: (TextStyle(
+              color: txtColor, fontWeight: FontWeight.bold, fontSize: 14)),
+        ),
       ),
     );
 
@@ -152,65 +151,3 @@ Widget formFeild({
         ),
       ),
     );
-
-
-/// Cart Button with text
-Widget cartButton({
-  required Function()? function,
-   String? text,
-  Color? color,
-  Color? txtColor,
-  required Widget widget,
-   required double rightPadding,
-   required double fontSize,
-   required double iconSize,
-}) =>
-    Padding(
-      padding:  EdgeInsets.only(right:rightPadding ),
-      child: Container(
-        decoration: BoxDecoration(
-          color: color,
-          border: Border.all(color: primaryColor),
-          //  color: buttonColor,
-          borderRadius: BorderRadius.circular(
-            10.0,
-          ),
-        ),
-        child: MaterialButton(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 15,right: 15),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                   Icon(Icons.shopping_cart,
-                    color: defTextColor,size: iconSize,),
-                  widget,
-                  Text(
-                    text!,
-                    style: (TextStyle(
-                        color: txtColor, fontWeight: FontWeight.bold,
-                        fontSize: fontSize)),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          padding: const EdgeInsets.all(5),
-          onPressed: function,
-        ),
-      ),
-    );
-
-///Bottom Navigation Bar
-BottomNavigationBarItem buildBottomNavigationBarItem({required String icon,required String activeIcon,required String text,}) {
-  return BottomNavigationBarItem(
-    icon: Image.asset('assets/icons/$icon.png'),
-    activeIcon: Image.asset('assets/icons/$activeIcon.png'),
-    label: text,
-  );
-}
-

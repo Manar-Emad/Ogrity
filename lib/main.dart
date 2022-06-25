@@ -12,8 +12,6 @@ import 'my_bloc_observer.dart';
 void main() async
 {
   WidgetsFlutterBinding.ensureInitialized();
-  ///uid = CacheHelper.getDate(key: 'uid');
-
   //DioHelper.init();
   await CacheHelper.init();
   BlocOverrides.runZoned(
@@ -85,9 +83,6 @@ class MyApp extends StatelessWidget {
         },
       ),
     );
-    //     },
-    //   ),
-    // );
   }
 }
 

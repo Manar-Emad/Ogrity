@@ -21,31 +21,3 @@ SizedBox sizedBoxw2=const SizedBox(height: 20,);
 SizedBox sizedBoxw3=const SizedBox(height: 30,);
 SizedBox sizedBoxw4=const SizedBox(height: 40,);
 SizedBox sizedBoxw5=const SizedBox(height: 50,);
-
-
-
-// import 'package:flutter/material.dart';
-// class Home extends StatelessWidget {
-//   var size,height,width;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//
-//     // getting the size of the window
-//     size = MediaQuery.of(context).size;
-//     height = size.height;
-//     width = size.width;
-//
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Geeks For Geeks"),
-//         backgroundColor: Colors.green,
-//       ),
-//       body: Container(
-//         color: Colors.yellow,
-//         height: height/2,//half of the height size
-//         width: width/2,//half of the width size
-//       ),
-//     );
-//   }
-// }
