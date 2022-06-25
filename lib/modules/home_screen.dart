@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ogrty/modules/class200.dart';
+import 'package:ogrty/modules/language_screen.dart';
 import 'package:ogrty/shared/components/components.dart';
 import 'package:ogrty/shared/styles/colors.dart';
 import 'package:ogrty/shared/styles/styles.dart';
@@ -42,17 +43,34 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+                child: Row(children: [
+                  Spacer(),
+                  TextButton( onPressed: (){
+                    navigateTo(context, const LanguageScreen());
+                  },
+                    child:  Text(
+                      AppLocalization.of(context)!.translate('change_language')!,
+                      style:const TextStyle(
+                          color: primaryColor,
+                          fontWeight: FontWeight.bold)
+                      ,),
+                  ),
+                  const Icon(Icons.arrow_forward_ios,color: secondColor,size: 20,),
+                ],),
+              ),
               Form(
                 key: formKey,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 40),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Card(
                     shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
               ),
                     elevation:3,
                     child: SizedBox(
-                      height: getHeight(context)/4,
+                      height: getHeight(context)/3.7,
                       child: defContainer(context,
                         Column(
                           children: [
@@ -103,15 +121,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               ],
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 17),
+                              padding: const EdgeInsets.only(top:17,bottom: 14),
                               child: defaultButton(context,
-                                  function: (){}, text:AppLocalization.of(context)!.translate(
-                       'count')! , borderColor: primaryColor,color: primaryColor),
+                                  function: (){
+                                    if(formKey.currentState!.validate()){
+                                    }
+                                  },
+                                  text:AppLocalization.of(context)!.translate(
+                                  'count')! ,
+                                  borderColor: primaryColor,color: primaryColor),
                             ),
                             Row(children: [
                               const SizedBox(width: 50,),
                               Text(AppLocalization.of(context)!.
-                              translate('driver_fare')!,style: black16bold(),),
+                              translate('driver_fare')!,style: black14bold(),),
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 10),
@@ -122,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               Text(AppLocalization.of(context)!.
-                              translate('driver_fare')!,style:prim16bold(),),
+                              translate('driver_fare')!,style:prim14bold(),),
                             ],),
                           ],
                         ),
@@ -135,7 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 10,right: 10,left: 10),
                 child: Text(AppLocalization.of(context)!.translate('Let\'s_count_it')!,
-                  style: black14bold(),),
+                  style: black16bold(),),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
@@ -163,7 +186,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           flex: 2,
                           child: Text(
                             AppLocalization.of(context)!.translate('the_number')!,
-                            style: prim14bold(),
+                            style: prim16bold(),
                           ),
                         ),
                         const Expanded(
@@ -176,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           flex: 2,
                           child: Text(
                             AppLocalization.of(context)!.translate('fare')!,
-                            style: prim14bold(),
+                            style: prim16bold(),
                           ),
                         ),
                         const Expanded(
@@ -311,7 +334,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.only(top: 10,right: 10,left: 10),
                 child: Text(AppLocalization.of(context)!.translate(
                     'rest_of_the_fare')!,
-                  style: black14bold(),),
+                  style: black16bold(),),
               ),
             classes(
               context,
@@ -389,7 +412,7 @@ Widget tableRow(context, {required String txt1, required String txt2}) => Row(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               AppLocalization.of(context)!.translate(txt1)!,
-              style: black14bold(),
+              style: black18regular(),
             ),
           ),
         ),
@@ -403,7 +426,7 @@ Widget tableRow(context, {required String txt1, required String txt2}) => Row(
           flex: 2,
           child: Text(
             AppLocalization.of(context)!.translate(txt2)!,
-            style: black14bold(),
+            style: black18regular(),
           ),
         ),
         const Expanded(
@@ -430,7 +453,7 @@ Widget classes(context,bool height,String txt,void Function() onTap,Widget widge
           title: ( Text(
             AppLocalization.of(context)!.translate(
                 txt)! ,
-            style:  prim18bold(),
+            style:  prim16bold(),
           )),
           trailing: IconButton(
               icon: height
