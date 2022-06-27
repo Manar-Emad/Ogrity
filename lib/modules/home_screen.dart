@@ -26,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   var controller = TextEditingController();
 
+  double ogra=0;
+
   bool _expanded1 = false;
   bool _expanded2 = false;
   bool _expanded3 = false;
@@ -126,6 +128,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   function: (){
                                     if(formKey.currentState!.validate()){
                                     }
+                                    setState((){
+                                      ogra=(double.parse(numController.text)*double.parse(controller.text));
+                                    });
                                   },
                                   text:AppLocalization.of(context)!.translate(
                                   'count')! ,
@@ -144,8 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       separatorColor.withOpacity(.3)),
                                 ),
                               ),
-                              Text(AppLocalization.of(context)!.
-                              translate('driver_fare')!,style:prim14bold(),),
+                              Text(ogra.toString(),style:prim14bold(),),
                             ],),
                           ],
                         ),
