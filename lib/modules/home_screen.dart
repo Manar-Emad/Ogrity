@@ -140,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               const SizedBox(width: 50,),
                               Text(AppLocalization.of(context)!.
                               translate('driver_fare')!,style: black14bold(),),
-                              Padding(
+                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 10, horizontal: 10),
                                 child: SizedBox(
