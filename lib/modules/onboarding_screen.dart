@@ -133,8 +133,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         SmoothPageIndicator(
                           count: list.length,
                           controller: controller,
-                          effect:const ScrollingDotsEffect(
-                            dotColor: Color(0xffFFA65F),
+                          effect: ScrollingDotsEffect(
+                            dotColor: Color(0xffFFA65F),///TODO
                             activeDotColor: primaryColor,
                             dotWidth: 5,
                             dotHeight: 5,

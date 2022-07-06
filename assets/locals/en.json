@@ -11,7 +11,7 @@
   "per_person": "per person",
   "count": "Count",
   "the_number": "Number",
-  "fare": "The Fare",
+  "fare": "Fare",
   "1": "1",
   "2": "2",
   "3": "3",
@@ -36,5 +36,6 @@
   "class_5": "Class 5",
   "change_language": "Change Language",
   "arabic": "Arabic",
-  "english": "English"
+  "english": "English",
+  "individual_fare": "Individual fare"
 }

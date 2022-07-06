@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:ogrty/shared/app_cubit/app_cubit.dart';
+import 'package:ogrty/shared/cubit/app_cubit.dart';
 import 'package:ogrty/shared/language/app_localization.dart';
 import 'package:ogrty/shared/network/local/cache_helper.dart';
 import 'package:ogrty/shared/styles/colors.dart';
@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
 
             /// LOCALIZATION
             supportedLocales: const [
-              Locale('en'),
+              //Locale('en'),
               Locale("ar"),
             ],
             localizationsDelegates: [

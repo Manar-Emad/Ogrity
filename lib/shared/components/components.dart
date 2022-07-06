@@ -24,9 +24,9 @@ Widget defContainer(context, widget,{Color? color})=> Padding(
     height:getHeight(context)/5,
     width: getWidth(context),
     decoration: BoxDecoration(
-      color: color,
+      color:const Color(0xff191919).withOpacity(.1),
       borderRadius: BorderRadius.circular(10),
-      boxShadow: const [
+      boxShadow:  [
         BoxShadow(
           color: defTextColor,
           // spreadRadius: 5,
@@ -76,7 +76,7 @@ Widget defaultButton(BuildContext context, {
         child: Text(
           text,
           style: (TextStyle(
-              color: txtColor, fontWeight: FontWeight.bold, fontSize: 14)),
+              color: txtColor, fontSize: 16)),
         ),
       ),
     );
@@ -105,6 +105,7 @@ void navigateAndFinish(context, widget) =>
 /// TEXT FORM FEILD
 Widget formFeild({
   required String txt,
+  required String label,
   required bool isClikable,
   dynamic validate,
   Function(String)? onSubmit,
@@ -129,14 +130,14 @@ Widget formFeild({
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
-            borderSide: const BorderSide(
-              color: primaryColor,
+            borderSide:  BorderSide(
+              color:secondColor.withOpacity(.8),
             ),
               ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
-            borderSide: const BorderSide(
-              color: primaryColor,
+            borderSide:  BorderSide(
+              color:secondColor.withOpacity(.8),
               width: 1.3,
             ),
           ),
@@ -147,7 +148,11 @@ Widget formFeild({
           hintStyle: TextStyle(color: textGray,fontSize: 14,fontWeight: FontWeight.normal),
           labelStyle: black14bold(),
           filled: true,
-          fillColor: Colors.grey.withOpacity(.07),
+          fillColor: secondColor.withOpacity(.3),
+          label:Text(label,style: TextStyle(
+              color: whiteColor,
+              fontSize: 18),),
+
         ),
       ),
     );

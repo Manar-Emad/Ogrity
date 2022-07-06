@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
 const primaryColor = Color(0xffF48A36);
+//final primaryColor = Color(0xff377D71);
 const secondColor = Colors.black;
+const whiteColor = Colors.white;
+ //const primaryColor = Colors.deepPurple;
  Color? textGray = Colors.grey[400];
-const defTextColor=Colors.white;
+final defTextColor=Colors.grey.withOpacity(.5);
 const disableColor= Color(0xffFFEDDE);
 const greenTxt=Color(0xff68CE68);
+const separatorColor2=Color(0xffF7F7F7);
 const separatorColor=Color(0xff707070);
 const scaffoldColor=Color(0xffF7F7F7);
 const containerColor=Color(0xffEDEDED);
