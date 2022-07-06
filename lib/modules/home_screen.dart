@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.transparent,
                           //elevation: 3,
                           shape:RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),) ,
+                            borderRadius: BorderRadius.circular(15),),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child:Column(
