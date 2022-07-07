@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 ///Primary Color Bold TextStyle
-TextStyle prim14bold() =>  TextStyle(
+TextStyle prim14bold() => const TextStyle(
   fontSize: 14.0,
   fontWeight: FontWeight.bold,
   color: primaryColor,
 );
-TextStyle prim16bold() =>  TextStyle(
+TextStyle prim16bold() =>  const TextStyle(
   fontSize: 16.0,
   fontWeight: FontWeight.bold,  color: primaryColor
+);
+TextStyle prim18bold() =>  const TextStyle(
+    fontSize: 18.0,
+    fontWeight: FontWeight.bold,  color: primaryColor
 );
 
 ///Black Bold TextStyle
@@ -26,6 +30,11 @@ TextStyle black18bold() => const TextStyle(
   fontWeight: FontWeight.bold,
 
 );
+TextStyle black20bold() => const TextStyle(
+  fontSize: 20.0,
+  fontWeight: FontWeight.bold,
+
+);
 ///white Bold TextStyle
 TextStyle white14bold() => const TextStyle(
   fontSize: 14.0,
@@ -33,6 +42,10 @@ TextStyle white14bold() => const TextStyle(
 );
 TextStyle white16bold() => const TextStyle(
   fontSize: 16.0,color: Colors.white,
+  fontWeight: FontWeight.bold,
+);
+TextStyle white20bold() => const TextStyle(
+  fontSize: 20.0,color: Colors.white,
   fontWeight: FontWeight.bold,
 );
 TextStyle white14regular() => const TextStyle(

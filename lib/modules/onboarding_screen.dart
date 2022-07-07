@@ -42,7 +42,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     CacheHelper.saveData(key: 'onBoarding', value: true).
     then((value) {
       if(value!){
-        navigateAndFinish(context,  HomeScreen(),);
+        navigateAndFinish(context,  const HomeScreen(),);
       }
 
     });
@@ -53,73 +53,73 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     list = [
       BoardModel(
-        image: 'assets/images/onboard1.png',
-        title:AppLocalization.of(context)!.translate('enough_with_the_fear_of_society,_let\'s_calculate_the_wages')!,
+        image: '',
+        title:'',
+        body: 'اسهل طريقة لحساب اجرتك  ',
+      ),
+      BoardModel(
+        image: '',
+        title: '',
         body: '',
       ),
       BoardModel(
-        image: 'assets/images/onboard2.png',
-        title: AppLocalization.of(context)!.translate('3_out_of_100_drivers')!,
-        body: '',
-      ),
-      BoardModel(
-        image: 'assets/images/onboard3.png',
-        title:AppLocalization.of(context)!.translate('Let\'s_count_it')!,
+        image: '',
+        title:'',
         body: '',
       ),
 
     ];
     return Directionality(
       textDirection: TextDirection.ltr,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10,),
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.white,
-
-            actions: [
-              TextButton( onPressed: submit,
-          child:  Text(
-            AppLocalization.of(context)!.translate('skip')!,
-                style:const TextStyle(
-                    color: secondColor,
-                    fontWeight: FontWeight.bold)
-                ,),
-                  ),
-              const Icon(Icons.arrow_forward_ios,color: secondColor,),
-            ],
-          ),
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: PageView.builder(
-                    physics:const BouncingScrollPhysics(),
-                    onPageChanged: (int index) {
-                      if (index == (list.length - 1) && !isLast) {
-                        setState(() => isLast = true);
-                      } else if (isLast) {
-                        setState(() => isLast = false);
-                      }
-                    },
-                    controller: controller,
-                    itemCount: list.length,
-                    itemBuilder: (context, i) => Column(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Expanded(
+              child: PageView.builder(
+                physics:const BouncingScrollPhysics(),
+                onPageChanged: (int index) {
+                  if (index == (list.length - 1) && !isLast) {
+                    setState(() => isLast = true);
+                  } else if (isLast) {
+                    setState(() => isLast = false);
+                  }
+                },
+                controller: controller,
+                itemCount: list.length,
+                itemBuilder: (context, i) => Stack(
+                  children: [
+                    Image(image: AssetImage('assets/images/8.jpg'),
+                      height: getHeight(context),width: getWidth(context),
+                      ),
+                    Container(color:Colors.black.withOpacity(.6)),
+                    SizedBox(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: [
+                            Spacer(),
+                            TextButton( onPressed: submit,
+                              child:  Text(
+                                AppLocalization.of(context)!.translate('skip')!,
+                                style:const TextStyle(
+                                    color: secondColor,fontSize:20,
+                                    fontWeight: FontWeight.bold)
+                                ,),
+                            ),
+                            const SizedBox(width:10),
+                            const Icon(Icons.arrow_forward_ios,
+                              size:15,
+                              color: secondColor,),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Expanded(
-                          child: Image(
-                            width: MediaQuery.of(context).size.width * 0.9,
-                            height:MediaQuery.of(context).size.height * 0.6,
-                            image: AssetImage(
-                              list[i].image,
-                            ),
-                          ),
-                        ),
+                        Spacer(),
                         sizedBoxh1,
                         Text(
                           list[i].title,
@@ -128,64 +128,32 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         sizedBoxh1,
                         Text(
                           list[i].body,
-                          style: black14bold(),
+                          style: white20bold(),
                         ),
-                        SmoothPageIndicator(
-                          count: list.length,
-                          controller: controller,
-                          effect: ScrollingDotsEffect(
-                            dotColor: Color(0xffFFA65F),///TODO
-                            activeDotColor: primaryColor,
-                            dotWidth: 5,
-                            dotHeight: 5,
-                            spacing: 5.0,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+                          child: SizedBox(
+                            width:double.infinity,
+                            child: defaultButton(context, function: () {
+                              if (isLast) {
+                                submit();
+                              } else {
+                                controller.nextPage(
+                                  duration: const Duration(milliseconds: 750),
+                                  curve: Curves.fastLinearToSlowEaseIn,
+                                );
+                              }
+                            },
+                                text: 'ابدا', borderColor: primaryColor),
                           ),
                         ),
                       ],
                     ),
-                  ),
+                  ],
                 ),
               ),
-              /// BUTTON
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: primaryColor,
-                    border: Border.all(color: primaryColor ),
-                    borderRadius: BorderRadius.circular(30.0),
-
-                  ),
-                  width: double.infinity,
-                  height: 40,
-                  child:TextButton(
-                    onPressed: () {
-                      if (isLast) {
-                        /// TODO this dont work????
-                        submit();
-                      } else {
-                        controller.nextPage(
-                          duration: const Duration(milliseconds: 750),
-                          curve: Curves.fastLinearToSlowEaseIn,
-                        );
-                      }
-                    },
-                    child: Text(
-                      isLast ?
-                      AppLocalization.of(context)!.translate('start')! : AppLocalization.of(context)!.translate('next')! ,
-                      style:white18regular(),),
-                  ),
-
-                ),
-              ),
-              sizedBoxh2,
-              /// BLACK CONTAINER
-              Container(color: secondColor,alignment: Alignment.bottomCenter,
-                height:3,
-                width:100,
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

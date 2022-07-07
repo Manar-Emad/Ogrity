@@ -76,7 +76,7 @@ Widget defaultButton(BuildContext context, {
         child: Text(
           text,
           style: (TextStyle(
-              color: txtColor, fontSize: 16)),
+              color: txtColor, fontSize: 20)),
         ),
       ),
     );

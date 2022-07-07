@@ -6,6 +6,7 @@ import 'package:ogrty/shared/styles/styles.dart';
 import '../shared/language/app_localization.dart';
 import '../shared/styles/sizes.dart';
 import 'build_row.dart';
+import 'onboarding_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -46,137 +47,167 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: scaffoldColor,
+    //  backgroundColor: Colors.black.withOpacity(.1),
       body: SingleChildScrollView(
           child: Column(
             children: [
               Form(
                 key: formKey,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: SizedBox(
-                    height: getHeight(context) / 3.6,
-                    child: Stack(
-                      children: [
-                        Container(
-                          decoration:  const BoxDecoration(
-                            borderRadius:  BorderRadius.only(
-                              bottomRight: Radius.circular(40),
-                            ),
-                            image:  DecorationImage(
-                              image:  AssetImage('assets/images/2.jpg',),
-                              fit: BoxFit.cover,
-                            ),
-                          ),),
-                        Card(
-                          color: Colors.transparent,
-                          //elevation: 3,
-                          shape:RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15),),
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
-                            child:Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        width: getWidth(context) / 3,
-                                        child: formFeild(
-                                          label: 'اجرة الفرد',
-                                          controller: ograPersonsController,
-                                          type: TextInputType.number,
-                                          validate: (value) {
-                                            if (value.isEmpty) {
-                                              return AppLocalization.of(context)!
-                                                  .translate(
-                                                  'please_enter_value')!;
-                                            }
-                                            return null;
-                                          },
-                                          txt: AppLocalization.of(context)!
-                                              .translate('per_person')!,
-                                          focusedBorder: InputBorder.none,
-                                          isClikable: true,
-                                          disabledBorder: InputBorder.none,
-                                        ),
-                                      ),
-                                      sizedBoxw2,
-                                      SizedBox(
-                                        width: getWidth(context) / 3,
-                                        child: formFeild(label: 'عدد الركاب',
-                                            controller: ograFareController,
-                                            type: TextInputType.none,
+                child: SizedBox(
+                  height: getHeight(context) /2.6,
+                  child: Stack(
+                    children: [
+                      Container(
+                        decoration:  const BoxDecoration(
+                          borderRadius:  BorderRadius.only(
+                            bottomRight: Radius.circular(50),
+                          ),
+                          image:  DecorationImage(
+                            image:  AssetImage('assets/images/2.jpg',),
+                            fit: BoxFit.cover,
+                          ),
+                        ),),
+                      Stack(clipBehavior: Clip.none,
+                        children: [
+                          Container(
+                            decoration:  BoxDecoration(
+                              color: Colors.black.withOpacity(.2),
+                              borderRadius:   const BorderRadius.only(
+                                bottomRight: Radius.circular(60),
+                              ),
+                            ), child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child:Column(
+                                children: [
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 60),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: getWidth(context) / 2.5,
+                                          height: getHeight(context)/15,
+                                          child: formFeild(
+                                            label: 'اجرة الفرد',
+                                            controller: ograPersonsController,
+                                            type: TextInputType.number,
                                             validate: (value) {
                                               if (value.isEmpty) {
-                                                return AppLocalization.of(
-                                                    context)!
+                                                return AppLocalization.of(context)!
                                                     .translate(
                                                     'please_enter_value')!;
                                               }
                                               return null;
                                             },
                                             txt: AppLocalization.of(context)!
-                                                .translate(
-                                                'number_of_passengers')!,
+                                                .translate('per_person')!,
                                             focusedBorder: InputBorder.none,
                                             isClikable: true,
-                                            disabledBorder: InputBorder.none),
+                                            disabledBorder: InputBorder.none,
+                                          ),
+                                        ),
+                                        sizedBoxw2,
+                                        SizedBox(
+                                          width: getWidth(context) / 2.5,
+                                          height: getHeight(context)/15,
+                                          child: formFeild(label: 'عدد الركاب',
+                                              controller: ograFareController,
+                                              type: TextInputType.none,
+                                              validate: (value) {
+                                                if (value.isEmpty) {
+                                                  return AppLocalization.of(
+                                                      context)!
+                                                      .translate(
+                                                      'please_enter_value')!;
+                                                }
+                                                return null;
+                                              },
+                                              txt: AppLocalization.of(context)!
+                                                  .translate(
+                                                  'number_of_passengers')!,
+                                              focusedBorder: InputBorder.none,
+                                              isClikable: true,
+                                              disabledBorder: InputBorder.none),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 17, bottom: 14),
+                                    child: defaultButton(
+                                      context,
+                                      function: () {
+                                        if (formKey.currentState!.validate()) {}
+                                        setState(() {
+                                          ogra = (double.parse(ograPersonsController.text) * double.parse(ograFareController.text));
+                                        });
+                                      },
+                                      text: AppLocalization.of(context)!
+                                          .translate('count')!,
+                                      txtColor: whiteColor.withOpacity(.8),
+                                      borderColor: secondColor.withOpacity(.4),
+                                      color: secondColor.withOpacity(.4),
+                                    ),
+                                  ),
+                                  Row(
+                                    //mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Spacer(),
+                                      Text(
+                                        AppLocalization.of(context)!
+                                            .translate('driver_fare')!,
+                                        style: white20bold(),
                                       ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10, horizontal: 10),
+                                        child: SizedBox(
+                                          width: getWidth(context) / 3,
+                                          child: defaultSeparator(
+                                              separatorColor2.withOpacity(.5)),
+                                        ),
+                                      ),
+                                      Text(
+                                        ogra.toString(),
+                                        style: white20bold(),
+                                      ),
+                                      const Spacer(),
                                     ],
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 17, bottom: 14),
-                                  child: defaultButton(
-                                    context,
-                                    function: () {
-                                      if (formKey.currentState!.validate()) {}
-                                      setState(() {
-                                        ogra = (double.parse(ograPersonsController.text) * double.parse(ograFareController.text));
-                                      });
-                                    },
-                                    text: AppLocalization.of(context)!
-                                        .translate('count')!,
-                                    txtColor: whiteColor.withOpacity(.8),
-                                    borderColor: secondColor.withOpacity(.4),
-                                    color: secondColor.withOpacity(.4),
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    const SizedBox(
-                                      width: 60,
-                                    ),
-                                    Text(
-                                      AppLocalization.of(context)!
-                                          .translate('driver_fare')!,
-                                      style: black18bold(),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 10, horizontal: 10),
-                                      child: SizedBox(
-                                        width: getWidth(context) / 3,
-                                        child: defaultSeparator(
-                                            separatorColor2.withOpacity(.5)),
-                                      ),
-                                    ),
-                                    Text(
-                                      ogra.toString(),
-                                      style: black18bold(),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
+                          Positioned(
+                            bottom:-20,
+                            child: SizedBox(
+                              width:getWidth(context),
+                              child: Row( 
+                                mainAxisAlignment:MainAxisAlignment.end,
+                                children: [
+                                  Spacer(),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                                    child: defaultButton(context,
+                                        function:() {
+                                          navigateTo(context, const LanguageScreen());
+                                        }, text:  AppLocalization.of(context)!
+                                            .translate('change_language')!,
+                                        txtColor: whiteColor,
+                                        color: primaryColor.withOpacity(.8),
+                                        borderColor: primaryColor),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -185,40 +216,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () {
-                              navigateTo(context, const LanguageScreen());
-                            },
-                            child: Text(
-                              AppLocalization.of(context)!
-                                  .translate('change_language')!,
-                              style: const TextStyle(
-                                  color: primaryColor,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          const Icon(
-                            Icons.arrow_forward_ios,
-                            color: primaryColor,
-                            size: 15,
-                          ),
-                        ],
-                      ),
-                    ),
-
+                    defaultButton(context,
+                        function: (){navigateTo(context,OnBoardingScreen());},
+                        text: 'board', borderColor: primaryColor),
                     Padding(
                       padding:
                           const EdgeInsets.only(top: 10, right: 10, left: 10),
                       child: Text(
                         AppLocalization.of(context)!
                             .translate('individual_fare')!,textAlign: TextAlign.end,
-                        style: black18bold(),
+                        style: black20bold(),
                       ),
                     ),
                     Padding(
@@ -226,6 +233,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: SizedBox(
                         height: getHeight(context) / 2,
                         child: Card(
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
                          child: SingleChildScrollView(
                             child: Column(
                               children: [
@@ -243,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: Text(
                                         AppLocalization.of(context)!
                                             .translate('the_number')!,
-                                        style: prim16bold(),
+                                        style: prim18bold(),
                                       ),
                                     ),
                                     const Expanded(
@@ -257,7 +268,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       child: Text(
                                         AppLocalization.of(context)!
                                             .translate('fare')!,
-                                        style: prim16bold(),
+                                        style: prim18bold(),
                                       ),
                                     ),
                                     const Expanded(
@@ -301,7 +312,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Text(
                         AppLocalization.of(context)!
                             .translate('rest_of_the_fare')!,
-                        style: black16bold(),
+                        style: black20bold(),
                       ),
                     ),
                     classes(
