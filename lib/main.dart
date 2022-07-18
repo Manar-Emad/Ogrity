@@ -19,24 +19,24 @@ void main() async
       AppCubit();},
     blocObserver: MyBlocObserver(),
   );
-  bool? onBoarding=CacheHelper.getData(key:'onBoarding');
-  String? token=CacheHelper.getData(key:'token');
-  Widget widget;
+  // bool? onBoarding=CacheHelper.getData(key:'onBoarding');
+  // String? token=CacheHelper.getData(key:'token');
+  // Widget widget;
 
-  if(onBoarding !=null ){
-    if(token !=null) {
-      widget= HomeScreen();
-    } else{widget=  HomeScreen();}
-  }else{widget=const OnBoardingScreen();}
+  // if(onBoarding !=null ){
+  //   if(token !=null) {
+  //     widget= HomeScreen();
+  //   } else{widget=  HomeScreen();}
+  // }else{widget=const OnBoardingScreen();}
 
 
-  runApp(  MyApp(startWidget: widget,));
+  runApp(  const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final Widget startWidget;
+ // final Widget startWidget;
 
-  const MyApp({required this.startWidget});
+   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
               return supportedLocales.first;
             },
 
-            home: startWidget,
+            home: const HomeScreen(),
           );
         },
       ),

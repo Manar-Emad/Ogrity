@@ -216,9 +216,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    defaultButton(context,
-                        function: (){navigateTo(context,OnBoardingScreen());},
-                        text: 'board', borderColor: primaryColor),
+                    // defaultButton(context,
+                    //     function: (){navigateTo(context,OnBoardingScreen());},
+                    //     text: 'board', borderColor: primaryColor),
                     Padding(
                       padding:
                           const EdgeInsets.only(top: 10, right: 10, left: 10),
